@@ -7,7 +7,14 @@ vector<string> split_string(string);
 
 //////Solution//////
 int maxSubsetSum(vector<int> arr) {
-
+	int inclu = arr[0];
+	int exclu = 0;
+	for (int i = 1; i < arr.size(); ++i) {
+		int tmpExclu = max(inclu, exclu);
+		inclu = exclu + arr[i];
+		exclu = tmpExclu;
+	}
+	return max(inclu, exclu);
 }
 
 
